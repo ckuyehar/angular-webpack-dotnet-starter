@@ -74,3 +74,5 @@ dll/
 # Visual Studio related #
 [Bb]in
 [Oo]bj
+wwwroot/dist
+wwwroot/assets
