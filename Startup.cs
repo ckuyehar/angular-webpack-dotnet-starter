@@ -30,7 +30,7 @@ namespace angular_webpack_starter
         {
             // Add framework services.
             services.AddMvc();
-            //services.AddNodeServices();
+            services.AddNodeServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,9 +42,9 @@ namespace angular_webpack_starter
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                /*app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
                     HotModuleReplacement = true
-                });*/
+                });
             }
             else
             {

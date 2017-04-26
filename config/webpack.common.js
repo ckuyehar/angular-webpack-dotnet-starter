@@ -205,7 +205,7 @@ module.exports = function (options) {
      */
     plugins: [
       new AssetsPlugin({
-        path: helpers.root('dist'),
+        path: helpers.root('wwwroot/dist'),
         filename: 'webpack-assets.json',
         prettyPrint: true
       }),
@@ -265,7 +265,7 @@ module.exports = function (options) {
        * See: https://www.npmjs.com/package/copy-webpack-plugin
        */
       new CopyWebpackPlugin([
-        { from: 'src/assets', to: 'assets' },
+        { from: 'src/assets', to: helpers.root('wwwroot/assets') },
         { from: 'src/meta'}
       ]),
 

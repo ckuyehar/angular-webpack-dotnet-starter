@@ -87,6 +87,13 @@ module.exports = function (options) {
 
       library: 'ac_[name]',
       libraryTarget: 'var',
+
+      /** webpack has a highly useful configuration that let you specify the base path 
+       * for all the assets on your application. It's called publicPath. 
+       * 
+       * See: https://webpack.js.org/guides/public-path/
+       */
+      publicPath: '/dist/'
     },
 
     module: {

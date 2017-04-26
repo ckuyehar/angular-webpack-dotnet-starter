@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
-    <IsPackable>false</IsPackable>
+    <IsPackable>false</IsPackable>    
   </PropertyGroup>  
 
   <ItemGroup>
@@ -22,15 +22,22 @@
     <Content Remove="src\**" />
   </ItemGroup>
 
+  <Target Name="CleanWebpack" AfterTargets="Clean">
+    <Message Importance="High" Text="cleaning wwwroot" />
+    <RemoveDir Directories="wwwroot\dist" />
+    <RemoveDir Directories="wwwroot\assets" />
+    <Message Importance="High" Text="cleaning done" />
+  </Target>
+
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
-    <Exec Command="npm install" />
-    <Exec Command="node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js --env.prod" />
-    <Exec Command="node node_modules/webpack/bin/webpack.js --env.prod" />
+    <Message Importance="High" Text="ensuring the JS resources are freshly built in production mode..." />
+    <!-- <Exec Command="npm install" /> -->
+    <Exec Command="node node_modules/webpack/bin/webpack.js" />
 
     <!-- Include the newly-built files in the publish output -->
     <ItemGroup>
-      <DistFiles Include="wwwroot\dist\**; ClientApp\dist\**" />
+      <DistFiles Include="wwwroot\assets\**; wwwroot\dist\**" />
       <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
         <RelativePath>%(DistFiles.Identity)</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
